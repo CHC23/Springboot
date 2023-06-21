@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 	<include resource="org/springframework/boot/logging/logback/base.xml" /> -->
+    <contextName>logback</contextName>
+    <!-- 记录文件到特定目录 -->
+    <!-- 	<property name="log.path" value="E:\\test\\logback.log" /> -->
+
+    <!-- 输出到logstash -->
+    <!--    <appender name="stash"-->
+    <!--              class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+    <!--        <destination>115.159.93.44:4564</destination>-->
+    <!--        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />-->
+    <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+    <!--            <level>info</level>-->
+    <!--        </filter>-->
+    <!--    </appender>-->
+    <property name="log.charset" value="utf-8"/>
+    <property name="log.pattern"
+              value="%white(%contextName-) %red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{36}) - %white(%msg%n)"/>
+
+    <!--输出到控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>${log.charset}</charset>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--encoder 默认配置为PatternLayoutEncoder-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger Line:%-3L - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+
+
+    <logger name="com.chc" level="DEBUG"/>
+    <logger name="druid.sql" level="DEBUG"/>
+    <logger name="java.sql" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="java.sql.ResultSet" level="DEBUG"/>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+<!--        <appender-ref ref="STDOUT" />-->
+<!--        <appender-ref ref="stash" />-->
+    </root>
+</configuration>
