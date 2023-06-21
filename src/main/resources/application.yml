@@ -17,8 +17,9 @@ mybatis:
     auto: update
   database:
     type: mysql
-#  configuration:
+  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapUnderscoreToCamelCase: true
 
 mapper:
   mappers: tk.mybatis.mapper.common.Mapper
@@ -32,5 +33,4 @@ pagehelper:
   params: count=countSql
 
 logging:
-  config:
-    classpath: logback.xml
+  config: classpath:logback.xml

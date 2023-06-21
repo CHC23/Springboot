@@ -17,4 +17,8 @@ public class UserService {
     public List<User> getAllUsers(){
         return userMapper.selectAll();
     }
+
+    public User getUserById(String userId){
+        return userMapper.selectUserById(userId);
+    }
 }
