@@ -8,6 +8,8 @@ public enum ErrorMessage {
 
     PARAMS_ERROR(1001,"参数错误"),
 
+    SERVICE_ERROR(1002,"服务异常"),
+
     ;
 
     private final int code;

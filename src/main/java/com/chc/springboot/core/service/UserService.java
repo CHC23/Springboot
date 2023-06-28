@@ -19,6 +19,8 @@ public class UserService {
     }
 
     public User getUserById(String userId){
+        User user = new User();
+        Integer newAge = 1 + user.getAge();
         return userMapper.selectUserById(userId);
     }
 }
